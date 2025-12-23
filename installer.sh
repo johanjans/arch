@@ -64,7 +64,7 @@ pacstrap /mnt pipewire pipewire-pulse wireplumber alsa-utils           # audiopa
 pacstrap /mnt nvidia-open-dkms nvidia-utils egl-wayland                # gpupacstrap /mnt
 pacstrap /mnt wayland xorg-xwayland wayland-protocols libva-nvidia-driver # waylandpacstrap /mnt
 pacstrap /mnt neovim git base-devel man-db openssh curl                # utilspacstrap /mnt
-pacstrap /mnt hyprland uwsm swww kitty mako hyprsunset hypridle        # hyprland corepacstrap /mnt
+pacstrap /mnt hyprland uwsm swww kitty mako hypridle                   # hyprland corepacstrap /mnt
 pacstrap /mnt brightnessctl hyprpolkitagent hyprlock hyprpicker        # hyprland utilspacstrap /mnt
 pacstrap /mnt wofi dolphin                                             # gui appspacstrap /mnt
 pacstrap /mnt nerd-fonts noto-fonts fastfetch                          # fonts/ricepacstrap /mnt
@@ -75,11 +75,7 @@ pacstrap /mnt pdf2svg rtmpdump atomicparsley xdotool                   # random 
 pacstrap /mnt python-neovim python-pdftotext python-sympy              # python depspacstrap /mnt
 pacstrap /mnt nodejs yarn fzf ripgrep bat pacman-contrib               # dev toolspacstrap /mnt
 pacstrap /mnt npm                                                      # for gemini cli installation
-pacstrap /mnt aylurs-gtk-shell-git libgtop dart-sass wl-clipboard      # for hyprpanel
-pacstrap /mnt python python-gpustat upower gvfs gtksourceview3 hyprpicker # for hyprpanel
-pacstrap /mnt libsoup3 power-profiles-daemon grimblast wf-recorder # for hyprpanel
-pacstrap /mnt btop matugen
-
+pacstrap /mnt python python-gpustat                                    # for hyprpanel
 
 # Configuration
 genfstab -pU /mnt >> /mnt/etc/fstab
@@ -122,7 +118,7 @@ arch-chroot /mnt /bin/bash -c "su - johan -c 'npm install -g @google/gemini-cli'
 arch-chroot /mnt chown -R johan:users /home/johan
 arch-chroot /mnt /bin/bash -c "su - johan -c 'git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm'"
 arch-chroot /mnt /bin/bash -c "rm -rf /home/johan/yay"
-arch-chroot /mnt /bin/bash -c "su - johan -c 'yay -S --noconfirm --answerdiff=None --answerclean=None hyprpanel'"
+arch-chroot /mnt /bin/bash -c "su - johan -c 'yay -S --noconfirm --answerdiff=None --answerclean=None ags-hyprpanel-git aylurs-gtk-shell-git libgtop btop dart-sass wl-clipboard upower power-profiles-daemon gvfs gtksourceview3 libsoup3 grimblast-git wf-recorder-git matugen-bin hyprsunset-git'"
 arch-chroot /mnt /bin/bash -c "su - johan -c 'yay -S --noconfirm --answerdiff=None --answerclean=None google-chrome'"
 
 # REVERT SUDOERS (Security Fix)
