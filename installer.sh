@@ -47,18 +47,19 @@ mkdir /mnt/boot
 mount "${PART_BOOT}" /mnt/boot
 
 # Install Packages
-pacstrap /mnt base efibootmgr grub mkinitcpio e2fsprogs
-pacstrap /mnt linux-zen linux-zen-headers linux-firmware intel-ucode
-pacstrap /mnt networkmanager bluez bluez-utils
-pacstrap /mnt pipewire pipewire-pulse wireplumber alsa-utils
-pacstrap /mnt nvidia-open-dkms nvidia-utils egl-wayland
-pacstrap /mnt wayland xorg-xwayland wayland-protocols libva-nvidia-driver
-pacstrap /mnt neovim git base-devel man-db openssh curl
-pacstrap /mnt hyprland uwsm swww kitty mako hyprsunset hypridle brightnessctl hyprpolkitagent hyprlock hyprpicker wofi dolphin
-pacstrap /mnt nerd-fonts noto-fonts fastfetch
-pacstrap /mnt xdg-desktop-portal-hyprland
-pacstrap /mnt qt5-wayland qt6-wayland xwaylandvideobridge
-pacstrap /mnt nwg-displays
+pacstrap /mnt base efibootmgr grub mkinitcpio e2fsprogs # bootloader and filesystem things
+pacstrap /mnt linux-zen linux-zen-headers linux-firmware intel-ucode # drivers
+pacstrap /mnt networkmanager bluez bluez-utils # network and bluetooth things
+pacstrap /mnt pipewire pipewire-pulse wireplumber alsa-utils # audio things
+pacstrap /mnt nvidia-open-dkms nvidia-utils egl-wayland # gpu things
+pacstrap /mnt wayland xorg-xwayland wayland-protocols libva-nvidia-driver # wayland things
+pacstrap /mnt neovim git base-devel man-db openssh curl # random stuff
+pacstrap /mnt hyprland uwsm swww kitty mako hyprsunset hypridle brightnessctl hyprpolkitagent hyprlock hyprpicker wofi dolphin # hyprland
+pacstrap /mnt nerd-fonts noto-fonts fastfetch # some rice
+pacstrap /mnt xdg-desktop-portal-hyprland # needed for screen-sharing
+pacstrap /mnt qt5-wayland qt6-wayland xwaylandvideobridge # nice looking qt widgets in wayland
+pacstrap /mnt nwg-displays # monitor configuration gui
+pacstrap /mnt arch-chroot /mnt pacman --noconfirm -Sy pdf2svg rtmpdump atomicparsley xdotool python-neovim python-pdftotext python-sympy nodejs yarn fzf ripgrep bat pacman-contrib # vim stuff
 
 # Configuration
 genfstab -pU /mnt >> /mnt/etc/fstab
