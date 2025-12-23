@@ -57,29 +57,24 @@ mkdir /mnt/boot
 mount "${PART_BOOT}" /mnt/boot
 
 # Install Packages
-PACKAGES=(
-    base efibootmgr grub mkinitcpio e2fsprogs                # boot/fs
-    linux-zen linux-zen-headers linux-firmware intel-ucode   # kernel/drivers
-    networkmanager bluez bluez-utils                         # network/bt
-    pipewire pipewire-pulse wireplumber alsa-utils           # audio
-    nvidia-open-dkms nvidia-utils egl-wayland                # gpu
-    wayland xorg-xwayland wayland-protocols libva-nvidia-driver # wayland
-    neovim git base-devel man-db openssh curl                # utils
-    hyprland uwsm swww kitty mako hyprsunset hypridle        # hyprland core
-    brightnessctl hyprpolkitagent hyprlock hyprpicker        # hyprland utils
-    wofi dolphin                                             # gui apps
-    nerd-fonts noto-fonts fastfetch                          # fonts/rice
-    xdg-desktop-portal-hyprland                              # portals
-    qt5-wayland qt6-wayland xwaylandvideobridge              # qt theming
-    nwg-displays                                             # display manager
-    pdf2svg rtmpdump atomicparsley xdotool                   # random deps
-    python-neovim python-pdftotext python-sympy              # python deps
-    nodejs yarn fzf ripgrep bat pacman-contrib               # dev tools
-    npm                                                      # for gemini cli installation
-)
-
-# Install Packages (One Command)
-pacstrap /mnt "${PACKAGES[@]}"
+pacstrap /mnt base efibootmgr grub mkinitcpio e2fsprogs                # boot/fspacstrap /mnt
+pacstrap /mnt linux-zen linux-zen-headers linux-firmware intel-ucode   # kernel/driverspacstrap /mnt
+pacstrap /mnt networkmanager bluez bluez-utils                         # network/btpacstrap /mnt
+pacstrap /mnt pipewire pipewire-pulse wireplumber alsa-utils           # audiopacstrap /mnt
+pacstrap /mnt nvidia-open-dkms nvidia-utils egl-wayland                # gpupacstrap /mnt
+pacstrap /mnt wayland xorg-xwayland wayland-protocols libva-nvidia-driver # waylandpacstrap /mnt
+pacstrap /mnt neovim git base-devel man-db openssh curl                # utilspacstrap /mnt
+pacstrap /mnt hyprland uwsm swww kitty mako hyprsunset hypridle        # hyprland corepacstrap /mnt
+pacstrap /mnt brightnessctl hyprpolkitagent hyprlock hyprpicker        # hyprland utilspacstrap /mnt
+pacstrap /mnt wofi dolphin                                             # gui appspacstrap /mnt
+pacstrap /mnt nerd-fonts noto-fonts fastfetch                          # fonts/ricepacstrap /mnt
+pacstrap /mnt xdg-desktop-portal-hyprland                              # portalspacstrap /mnt
+pacstrap /mnt qt5-wayland qt6-wayland xwaylandvideobridge              # qt themingpacstrap /mnt
+pacstrap /mnt nwg-displays                                             # display managerpacstrap /mnt
+pacstrap /mnt pdf2svg rtmpdump atomicparsley xdotool                   # random depspacstrap /mnt
+pacstrap /mnt python-neovim python-pdftotext python-sympy              # python depspacstrap /mnt
+pacstrap /mnt nodejs yarn fzf ripgrep bat pacman-contrib               # dev toolspacstrap /mnt
+pacstrap /mnt npm                                                      # for gemini cli installation
 
 # Configuration
 genfstab -pU /mnt >> /mnt/etc/fstab
