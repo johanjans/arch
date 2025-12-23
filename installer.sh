@@ -58,29 +58,19 @@ mkdir /mnt/boot
 mount "${PART_BOOT}" /mnt/boot
 
 # Install Packages
-PACKAGES=(
-    base efibootmgr grub mkinitcpio e2fsprogs                # boot/fs
-    linux-zen linux-zen-headers linux-firmware intel-ucode   # kernel/drivers
-    networkmanager bluez bluez-utils                         # network/bt
-    pipewire pipewire-pulse wireplumber alsa-utils           # audio
-    nvidia-open-dkms nvidia-utils egl-wayland                # gpu
-    wayland xorg-xwayland wayland-protocols libva-nvidia-driver # wayland
-    neovim git base-devel man-db openssh curl                # utils
-    hyprland uwsm swww kitty mako hyprsunset hypridle        # hyprland core
-    brightnessctl hyprpolkitagent hyprlock hyprpicker        # hyprland utils
-    wofi dolphin                                             # gui apps
-    nerd-fonts noto-fonts fastfetch                          # fonts/rice
-    xdg-desktop-portal-hyprland                              # portals
-    qt5-wayland qt6-wayland xwaylandvideobridge              # qt theming
-    nwg-displays                                             # display manager
-    pdf2svg rtmpdump atomicparsley xdotool                   # random deps
-    python-neovim python-pdftotext python-sympy              # python deps
-    nodejs yarn fzf ripgrep bat pacman-contrib               # dev tools
-    npm                                                      # for gemini cli installation
-)
-
-# Install Packages (One Command)
-pacstrap /mnt "${PACKAGES[@]}"
+pacstrap /mnt base efibootmgr grub mkinitcpio e2fsprogs # bootloader and filesystem things
+pacstrap /mnt linux-zen linux-zen-headers linux-firmware intel-ucode # drivers
+pacstrap /mnt networkmanager bluez bluez-utils # network and bluetooth things
+pacstrap /mnt pipewire pipewire-pulse wireplumber alsa-utils # audio things
+pacstrap /mnt nvidia-open-dkms nvidia-utils egl-wayland # gpu things
+pacstrap /mnt wayland xorg-xwayland wayland-protocols libva-nvidia-driver # wayland things
+pacstrap /mnt neovim git base-devel man-db openssh curl # random stuff
+pacstrap /mnt hyprland uwsm swww kitty mako hyprsunset hypridle brightnessctl hyprpolkitagent hyprlock hyprpicker wofi dolphin # hyprland
+pacstrap /mnt nerd-fonts noto-fonts fastfetch # some rice
+pacstrap /mnt xdg-desktop-portal-hyprland # needed for screen-sharing
+pacstrap /mnt qt5-wayland qt6-wayland xwaylandvideobridge # nice looking qt widgets in wayland
+pacstrap /mnt nwg-displays # monitor configuration gui
+pacstrap /mnt pdf2svg rtmpdump atomicparsley xdotool python-neovim python-pdftotext python-sympy nodejs yarn fzf ripgrep bat pacman-contrib # vim stuff
 
 # Configuration
 genfstab -pU /mnt >> /mnt/etc/fstab
