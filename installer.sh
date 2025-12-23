@@ -57,25 +57,25 @@ mkdir /mnt/boot
 mount "${PART_BOOT}" /mnt/boot
 
 # Install Packages
-pacstrap /mnt base efibootmgr grub mkinitcpio e2fsprogs                # boot/fspacstrap /mnt
-pacstrap /mnt linux-zen linux-zen-headers linux-firmware intel-ucode   # kernel/driverspacstrap /mnt
-pacstrap /mnt networkmanager bluez bluez-utils                         # network/btpacstrap /mnt
-pacstrap /mnt pipewire pipewire-pulse wireplumber alsa-utils           # audiopacstrap /mnt
-pacstrap /mnt nvidia-open-dkms nvidia-utils egl-wayland                # gpupacstrap /mnt
-pacstrap /mnt wayland xorg-xwayland wayland-protocols libva-nvidia-driver # waylandpacstrap /mnt
-pacstrap /mnt neovim git base-devel man-db openssh curl                # utilspacstrap /mnt
-pacstrap /mnt hyprland uwsm swww kitty mako hypridle                   # hyprland corepacstrap /mnt
-pacstrap /mnt brightnessctl hyprpolkitagent hyprlock hyprpicker        # hyprland utilspacstrap /mnt
-pacstrap /mnt wofi dolphin                                             # gui appspacstrap /mnt
-pacstrap /mnt nerd-fonts noto-fonts fastfetch                          # fonts/ricepacstrap /mnt
-pacstrap /mnt xdg-desktop-portal-hyprland                              # portalspacstrap /mnt
-pacstrap /mnt qt5-wayland qt6-wayland xwaylandvideobridge              # qt themingpacstrap /mnt
-pacstrap /mnt nwg-displays                                             # display managerpacstrap /mnt
-pacstrap /mnt pdf2svg rtmpdump atomicparsley xdotool                   # random depspacstrap /mnt
-pacstrap /mnt python-neovim python-pdftotext python-sympy              # python depspacstrap /mnt
-pacstrap /mnt nodejs yarn fzf ripgrep bat pacman-contrib               # dev toolspacstrap /mnt
-pacstrap /mnt npm                                                      # for gemini cli installation
-pacstrap /mnt python python-gpustat                                    # for hyprpanel
+pacstrap /mnt base efibootmgr grub mkinitcpio e2fsprogs                   # boot/fs
+pacstrap /mnt linux-zen linux-zen-headers linux-firmware intel-ucode      # kernel/drivers
+pacstrap /mnt networkmanager bluez bluez-utils                            # network/bt
+pacstrap /mnt pipewire pipewire-pulse wireplumber alsa-utils pavucontrol  # audio
+pacstrap /mnt nvidia-open-dkms nvidia-utils egl-wayland                   # gpu
+pacstrap /mnt wayland xorg-xwayland wayland-protocols libva-nvidia-driver # wayland
+pacstrap /mnt neovim git base-devel man-db openssh curl                   # utils
+pacstrap /mnt hyprland uwsm swww kitty mako hypridle                      # hyprland core
+pacstrap /mnt brightnessctl hyprpolkitagent hyprlock hyprpicker           # hyprland utils
+pacstrap /mnt wofi dolphin                                                # gui apps
+pacstrap /mnt nerd-fonts noto-fonts fastfetch                             # fonts/rice
+pacstrap /mnt xdg-desktop-portal-hyprland                                 # portals
+pacstrap /mnt qt5-wayland qt6-wayland xwaylandvideobridge                 # qt theming
+pacstrap /mnt nwg-displays                                                # display manager
+pacstrap /mnt pdf2svg rtmpdump atomicparsley xdotool                      # vim deps
+pacstrap /mnt python-neovim python-pdftotext python-sympy                 # python deps
+pacstrap /mnt nodejs yarn fzf ripgrep bat pacman-contrib                  # dev tools
+pacstrap /mnt npm                                                         # for gemini cli installation
+pacstrap /mnt python python-gpustat                                       # for hyprpanel
 
 # Configuration
 genfstab -pU /mnt >> /mnt/etc/fstab
@@ -100,7 +100,7 @@ arch-chroot /mnt passwd -d root
 arch-chroot /mnt sed -i 's/MODULES=()/MODULES=(i915 nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
 arch-chroot /mnt mkinitcpio -P
 arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot
-arch-chroot /mnt sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 nvidia_drm.modeset=1"/' /etc/default/grub
+arch-chroot /mnt sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet nvidia_drm.modeset=1"/' /etc/default/grub
 arch-chroot /mnt sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/' /etc/default/grub
 arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
