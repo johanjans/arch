@@ -64,7 +64,7 @@ pacstrap /mnt pipewire pipewire-pulse wireplumber alsa-utils pavucontrol  # audi
 pacstrap /mnt nvidia-open-dkms nvidia-utils egl-wayland                   # gpu
 pacstrap /mnt wayland xorg-xwayland wayland-protocols libva-nvidia-driver # wayland
 pacstrap /mnt neovim git base-devel man-db openssh curl                   # utils
-pacstrap /mnt hyprland uwsm swww kitty mako hypridle                      # hyprland core
+pacstrap /mnt hyprland uwsm swww kitty hypridle                           # hyprland core
 pacstrap /mnt brightnessctl hyprpolkitagent hyprlock hyprpicker           # hyprland utils
 pacstrap /mnt wofi dolphin                                                # gui apps
 pacstrap /mnt nerd-fonts noto-fonts fastfetch                             # fonts/rice
