@@ -70,6 +70,8 @@ alias free='free -m'						                                                      
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias ls='ls --color=auto'
+alias ll='ls --color=auto -ahlrt'
 alias nano='nvim'						                                                              # break the habit
 alias c='code'							                                                              # short for vscode
 alias v='nvim'							                                                              # short for neovim
