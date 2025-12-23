@@ -75,6 +75,11 @@ pacstrap /mnt pdf2svg rtmpdump atomicparsley xdotool                   # random 
 pacstrap /mnt python-neovim python-pdftotext python-sympy              # python depspacstrap /mnt
 pacstrap /mnt nodejs yarn fzf ripgrep bat pacman-contrib               # dev toolspacstrap /mnt
 pacstrap /mnt npm                                                      # for gemini cli installation
+pacstrap /mnt aylurs-gtk-shell-git libgtop dart-sass wl-clipboard      # for hyprpanel
+pacstrap /mnt python python-gpustat upower gvfs gtksourceview3 hyprpicker # for hyprpanel
+pacstrap /mnt libsoup3 power-profiles-daemon grimblast wf-recorder # for hyprpanel
+pacstrap /mnt btop matugen
+
 
 # Configuration
 genfstab -pU /mnt >> /mnt/etc/fstab
@@ -117,7 +122,7 @@ arch-chroot /mnt /bin/bash -c "su - johan -c 'npm install -g @google/gemini-cli'
 arch-chroot /mnt chown -R johan:users /home/johan
 arch-chroot /mnt /bin/bash -c "su - johan -c 'git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm'"
 arch-chroot /mnt /bin/bash -c "rm -rf /home/johan/yay"
-arch-chroot /mnt /bin/bash -c "su - johan -c 'yay -S --noconfirm --answerdiff=None --answerclean=None hyprbar-git'"
+arch-chroot /mnt /bin/bash -c "su - johan -c 'yay -S --noconfirm --answerdiff=None --answerclean=None hyprpanel'"
 arch-chroot /mnt /bin/bash -c "su - johan -c 'yay -S --noconfirm --answerdiff=None --answerclean=None google-chrome'"
 
 # REVERT SUDOERS (Security Fix)
