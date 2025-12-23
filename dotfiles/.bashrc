@@ -7,6 +7,8 @@
 
 [[ $- != *i* ]] && return                                                                 # if not running interactively, don't do anything
 
+export PATH="$HOME/.local/bin:$PATH"
+
 # SETUP
 export EDITOR="nvim"
 export TERM="xterm-256color"
