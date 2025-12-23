@@ -60,7 +60,7 @@ mount "${PART_BOOT}" /mnt/boot
 pacstrap /mnt base efibootmgr grub mkinitcpio e2fsprogs                   # boot/fs
 pacstrap /mnt linux-zen linux-zen-headers linux-firmware intel-ucode      # kernel/drivers
 pacstrap /mnt networkmanager bluez bluez-utils                            # network/bt
-pacstrap /mnt pipewire pipewire-pulse wireplumber alsa-utils pavucontrol  # audio
+pacstrap /mnt pipewire pipewire-pulse wireplumber alsa-utils sof-firmware # audio
 pacstrap /mnt nvidia-open-dkms nvidia-utils egl-wayland                   # gpu
 pacstrap /mnt wayland xorg-xwayland wayland-protocols libva-nvidia-driver # wayland
 pacstrap /mnt neovim git base-devel man-db openssh curl                   # utils
@@ -70,6 +70,7 @@ pacstrap /mnt wofi dolphin                                                # gui 
 pacstrap /mnt nerd-fonts noto-fonts fastfetch                             # fonts/rice
 pacstrap /mnt xdg-desktop-portal-hyprland                                 # portals
 pacstrap /mnt qt5-wayland qt6-wayland xwaylandvideobridge                 # qt theming
+pacstrap /mnt nwg-look                                                    # gtk theming
 pacstrap /mnt nwg-displays                                                # display manager
 pacstrap /mnt pdf2svg rtmpdump atomicparsley xdotool                      # vim deps
 pacstrap /mnt python-neovim python-pdftotext python-sympy                 # python deps
