@@ -2,8 +2,8 @@ set termguicolors                               " enable 24-bit color support in
 let g:vim_monokai_tasty_italic = 1              " enable italic fonts
 let g:vim_monokai_tasty_machine_tint = 1        " monokai machine colorscheme variant
 let g:vim_monokai_tasty_highlight_active_window = 1 " make highlighted window stand out
-colorscheme vim-monokai-tasty                   " set colorscheme 
-let g:airline_theme='monokai_tasty'
+"colorscheme vim-monokai-tasty                   " set colorscheme 
+"let g:airline_theme='monokai_tasty'
 
 highlight clear LineNr                          " set transparent line number column
 highlight clear SignColumn                      " set transparent gitgutter column
