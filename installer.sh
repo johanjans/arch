@@ -53,9 +53,9 @@ pacstrap /mnt networkmanager bluez bluez-utils
 pacstrap /mnt pipewire pipewire-pulse wireplumber alsa-utils
 pacstrap /mnt nvidia-open-dkms nvidia-utils egl-wayland
 pacstrap /mnt wayland xorg-xwayland wayland-protocols libva-nvidia-driver
-pacstrap /mnt neovim git base-devel man-db openssh
+pacstrap /mnt neovim git base-devel man-db openssh curl
 pacstrap /mnt hyprland uwsm swww kitty mako hyprsunset hypridle brightnessctl hyprpolkitagent hyprlock hyprpicker wofi dolphin
-pacstrap /mnt nerd-fonts noto-fonts
+pacstrap /mnt nerd-fonts noto-fonts fastfetch
 pacstrap /mnt xdg-desktop-portal-hyprland
 pacstrap /mnt qt5-wayland qt6-wayland xwaylandvideobridge
 pacstrap /mnt nwg-displays
@@ -88,11 +88,19 @@ arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 # dotfiles
 cp -r "$CONFIG_SOURCE"/. /mnt/home/johan/
 
+# claude cli
+arch-chroot /mnt /bin/bash -c "su - johan -c 'curl -fsSL https://claude.ai/install.sh | bash'"
+
+# gemini cli
+arch-chroot /mnt /bin/bash -c "su - johan -c 'mkdir -p ~/.local && npm config set prefix \"~/.local\"'"
+arch-chroot /mnt /bin/bash -c "su - johan -c 'npm install -g @google/gemini-cli'"
+
 # yay and yay-stuff
 arch-chroot /mnt chown -R johan:users /home/johan
 arch-chroot /mnt /bin/bash -c "su - johan -c 'git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm'"
 arch-chroot /mnt /bin/bash -c "rm -rf /home/johan/yay"
 arch-chroot /mnt /bin/bash -c "su - johan -c 'yay -S --noconfirm --answerdiff=None --answerclean=None hyprbar-git'"
+arch-chroot /mnt /bin/bash -c "su - johan -c 'yay -S --noconfirm --answerdiff=None --answerclean=None google-chrome'"
 
 # Finish
 umount -R /mnt
