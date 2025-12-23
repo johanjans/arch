@@ -54,7 +54,7 @@ pacstrap /mnt pipewire pipewire-pulse wireplumber alsa-utils
 pacstrap /mnt nvidia-open-dkms nvidia-utils egl-wayland
 pacstrap /mnt wayland xorg-xwayland wayland-protocols libva-nvidia-driver
 pacstrap /mnt neovim git base-devel man-db openssh
-pacstrap /mnt hyprland uwsm swww kitty mako hyprsunset hypridle brightnessctl hyprpolkitagent hyprlock hyprpicker
+pacstrap /mnt hyprland uwsm swww kitty mako hyprsunset hypridle brightnessctl hyprpolkitagent hyprlock hyprpicker wofi dolphin
 pacstrap /mnt nerd-fonts noto-fonts
 pacstrap /mnt xdg-desktop-portal-hyprland
 pacstrap /mnt qt5-wayland qt6-wayland xwaylandvideobridge
