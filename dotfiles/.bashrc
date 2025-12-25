@@ -78,7 +78,7 @@ alias v='nvim'							                                                           
 alias n='nvim'                                                                            # short for neovim
 
 # NEW TERMINAL
-fastfetch --logo-padding-top 2 --logo-padding-left 3 # show some system information
+fastfetch --logo-padding-top 2 --logo-padding-left 3 --kitty-direct /home/johan/.config/hypr/fastfetch.png # show some system information
 echo "aliases: ex" # alias reminder
 echo "keybinds: ..."
 echo ""
