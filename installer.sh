@@ -66,17 +66,14 @@ pacstrap /mnt wayland xorg-xwayland wayland-protocols libva-nvidia-driver # wayl
 pacstrap /mnt neovim git base-devel man-db openssh curl                   # utils
 pacstrap /mnt hyprland uwsm swww kitty hypridle                           # hyprland core
 pacstrap /mnt brightnessctl hyprpolkitagent hyprlock hyprpicker           # hyprland utils
-pacstrap /mnt wofi dolphin                                                # gui apps
+pacstrap /mnt wofi dolphin code                                           # gui apps
 pacstrap /mnt nerd-fonts noto-fonts fastfetch                             # fonts/rice
 pacstrap /mnt xdg-desktop-portal-hyprland                                 # portals
 pacstrap /mnt qt5-wayland qt6-wayland xwaylandvideobridge                 # qt theming
 pacstrap /mnt nwg-look                                                    # gtk theming
 pacstrap /mnt nwg-displays                                                # display manager
-pacstrap /mnt pdf2svg rtmpdump atomicparsley xdotool                      # vim deps
-pacstrap /mnt python-neovim python-pdftotext python-sympy                 # python deps
 pacstrap /mnt nodejs yarn fzf ripgrep bat pacman-contrib                  # dev tools
 pacstrap /mnt npm                                                         # for gemini cli installation
-pacstrap /mnt python python-gpustat                                       # for hyprpanel
 
 # Configuration
 genfstab -pU /mnt >> /mnt/etc/fstab
@@ -107,6 +104,9 @@ arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
 # dotfiles
 cp -r "$CONFIG_SOURCE"/. /mnt/home/johan/
+arch-chroot /mnt code --install-extension "/mnt/home/johan/.config/Code - OSS/catppuccin-vsc.3.18.1.vsix"
+arch-chroot /mnt code --install-extension "/mnt/home/johan/.config/Code - OSS/catppuccin-vsc-icons.1.26.0.vsix"
+
 
 # claude cli
 arch-chroot /mnt /bin/bash -c "su - johan -c 'curl -fsSL https://claude.ai/install.sh | bash'"
@@ -119,7 +119,6 @@ arch-chroot /mnt /bin/bash -c "su - johan -c 'npm install -g @google/gemini-cli'
 arch-chroot /mnt chown -R johan:users /home/johan
 arch-chroot /mnt /bin/bash -c "su - johan -c 'git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm'"
 arch-chroot /mnt /bin/bash -c "rm -rf /home/johan/yay"
-arch-chroot /mnt /bin/bash -c "su - johan -c 'yay -S --noconfirm --answerdiff=None --answerclean=None ags-hyprpanel-git aylurs-gtk-shell-git libgtop btop dart-sass wl-clipboard upower power-profiles-daemon gvfs gtksourceview3 libsoup3 grimblast-git wf-recorder-git matugen-bin hyprsunset-git'"
 arch-chroot /mnt /bin/bash -c "su - johan -c 'yay -S --noconfirm --answerdiff=None --answerclean=None google-chrome'"
 
 # REVERT SUDOERS (Security Fix)
