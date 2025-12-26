@@ -76,6 +76,7 @@ alias nano='nvim'						                                                         
 alias c='code'							                                                              # short for vscode
 alias v='nvim'							                                                              # short for neovim
 alias n='nvim'                                                                            # short for neovim
+alias htop='btop' # short for btop
 
 # NEW TERMINAL
 fastfetch --kitty-direct $HOME/.config/fastfetch/archpuccinn.png

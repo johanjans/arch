@@ -63,7 +63,7 @@ pacstrap /mnt networkmanager bluez bluez-utils                            # netw
 pacstrap /mnt pipewire pipewire-pulse wireplumber alsa-utils sof-firmware # audio
 pacstrap /mnt nvidia-open-dkms nvidia-utils egl-wayland                   # gpu
 pacstrap /mnt wayland xorg-xwayland wayland-protocols libva-nvidia-driver # wayland
-pacstrap /mnt neovim git base-devel man-db openssh curl                   # utils
+pacstrap /mnt neovim git base-devel man-db openssh curl btop              # utils
 pacstrap /mnt hyprland uwsm swww kitty hypridle mako                      # hyprland core
 pacstrap /mnt brightnessctl hyprpolkitagent hyprlock hyprpicker waybar    # hyprland utils
 pacstrap /mnt wofi dolphin code pavucontrol                                          # gui apps
