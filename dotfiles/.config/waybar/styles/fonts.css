@@ -1,18 +1,18 @@
 * {
-	font-family: "Commit Mono Nerd Font";
+	font-family: "JetBrainsMono Nerd Font";
 	font-weight: bold;
 	font-size: 16px;
 }
 
 #custom-user,
-#mpris,
 tooltip label {
 	font-weight: normal;
 }
 
 #window label {
 	font-family: "JetBrainsMono Nerd Font";
-	font-weight: normal;
+	font-weight: bold;
+	font-size: 16px;
 }
 
 #workspaces button.active label,

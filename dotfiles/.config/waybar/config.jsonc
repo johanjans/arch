@@ -12,7 +12,8 @@
 		"hyprland/windowcount"
 	],
 	"modules-right": [
-		"mpris",
+		"custom/mpris",
+		"custom/dnd",
 		"idle_inhibitor",
 		"custom/system-stats",
 		"bluetooth",
@@ -75,6 +76,14 @@
 		"exec": "~/.config/waybar/scripts/system-stats.sh",
 		"return-type": "json",
 		"interval": 5
+	},
+
+	"custom/dnd": {
+		"exec": "~/.config/waybar/scripts/dnd.sh",
+		"return-type": "json",
+		"interval": 1,
+		"on-click": "~/.config/waybar/scripts/dnd.sh toggle; pkill -RTMIN+2 waybar",
+		"signal": 2
 	},
 
 	"idle_inhibitor": {
@@ -145,26 +154,13 @@
 		"on-click-right": "kitty --class floating -e ~/.config/waybar/scripts/bluetooth.sh disconnect"
 	},
 
-	"mpris": {
-		"format": "{player_icon} {dynamic}",
-		"format-paused": "{status_icon} {dynamic}",
-		"tooltip-format": "{player}: {artist} - {title}",
-		"tooltip-format-paused": "{player} (paused): {artist} - {title}",
-		"dynamic-order": ["artist", "title"],
-		"dynamic-separator": " - ",
-		"dynamic-len": 40,
-		"player-icons": {
-			"default": "󰎈",
-			"chromium": "󰊯",
-			"chrome": "󰊯",
-			"firefox": "󰈹",
-			"spotify": "󰓇",
-			"vlc": "󰕼",
-			"mpv": "󰐌"
-		},
-		"status-icons": {
-			"paused": "󰏤"
-		}
+	"custom/mpris": {
+		"exec": "~/.config/waybar/scripts/mpris.sh",
+		"return-type": "json",
+		"interval": 2,
+		"on-click": "playerctl play-pause",
+		"on-scroll-up": "playerctl next",
+		"on-scroll-down": "playerctl previous"
 	},
 
 	"battery": {
