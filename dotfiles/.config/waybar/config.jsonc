@@ -1,88 +1,186 @@
 {
-	"include": [
-		"~/.config/waybar/modules/*.jsonc",
-		"~/.config/waybar/modules/custom/*.jsonc",
-		"~/.config/waybar/modules/hyprland/*.jsonc"
-
-		// modules that are not included by default:
-		// "~/.config/waybar/modules/extras/*.jsonc"
-	],
-
 	/*------------
 	    layout
 	------------*/
 
 	"modules-left": [
-		"group/user",
-		"custom/left_div#1",
+		"custom/distro",
 		"hyprland/workspaces",
-		"custom/right_div#1",
 		"hyprland/window"
 	],
 	"modules-center": [
-		"hyprland/windowcount",
-		"custom/left_div#2",
-		"temperature",
-		"custom/left_div#3",
-		"memory",
-		"custom/left_div#4",
-		"cpu",
-		"custom/left_inv#1",
-		"custom/left_div#5",
-		"custom/distro",
-		"custom/right_div#2",
-		"custom/right_inv#1",
-		"idle_inhibitor",
-		"clock#time",
-		"custom/right_div#3",
-		"clock#date",
-		"custom/right_div#4",
-		"network",
-		"bluetooth",
-		"custom/system_update",
-		"custom/right_div#5"
+		"hyprland/windowcount"
 	],
 	"modules-right": [
 		"mpris",
-		"custom/left_div#6",
-		"group/pulseaudio",
-		"custom/left_div#7",
-		"backlight",
-		"custom/left_div#8",
+		"idle_inhibitor",
+		"custom/system-stats",
+		"bluetooth",
+		"network",
+		"pulseaudio",
 		"battery",
-		"custom/left_inv#2",
-		"custom/power_menu"
+		"tray",
+		"clock"
 	],
 
 	/*-------------
 	    options
 	-------------*/
 
-	// "expand-center":
-	// "expand-left":
-	// "expand-right":
 	"layer": "top",
-	// "output":
-	// "position":
 	"height": 0,
 	"width": 0,
 	"margin": 0,
-	// "margin-top":
-	// "margin-left":
-	// "margin-bottom":
-	// "margin-right":
-	// "no-center":
 	"spacing": 0,
-	// "name":
 	"mode": "dock",
-	// "start_hidden":
-	// "modifier-reset":
-	// "exclusive":
-	// "fixed-center":
-	// "passthrough":
-	// "ipc":
-	// "id":
-	"reload_style_on_change": true
-	// "on-sigusr1":
-	// "on-sigusr2":
+	"reload_style_on_change": true,
+
+	/*-------------
+	    modules
+	-------------*/
+
+	"custom/distro": {
+		"exec": "~/.config/waybar/scripts/system-update.sh module",
+		"return-type": "json",
+		"interval": 3600,
+		"signal": 1,
+		"on-click": "kitty --class floating -e ~/.config/waybar/scripts/system-update.sh",
+		"on-click-right": "kitty --class floating -e ~/.config/waybar/scripts/power-menu.sh"
+	},
+
+	"hyprland/workspaces": {
+		"format": "{name}",
+		"on-scroll-up": "hyprctl dispatch workspace +1",
+		"on-scroll-down": "hyprctl dispatch workspace -1",
+		"cursor": true
+	},
+
+	"hyprland/window": {
+		"format": "{}",
+		"rewrite": {
+			"": "Desktop",
+			"kitty": "Terminal",
+			"zsh": "Terminal",
+			"~": "Terminal"
+		},
+		"swap-icon-label": false
+	},
+
+	"hyprland/windowcount": {
+		"format": "[{}]",
+		"swap-icon-label": false
+	},
+
+	"custom/system-stats": {
+		"exec": "~/.config/waybar/scripts/system-stats.sh",
+		"return-type": "json",
+		"interval": 5
+	},
+
+	"idle_inhibitor": {
+		"format": "{icon} ",
+		"format-icons": {
+			"activated": "󰈈",
+			"deactivated": "󰈉"
+		},
+		"tooltip-format-activated": "Screen can not sleep",
+		"tooltip-format-deactivated": "Screen can sleep"
+	},
+
+	"clock": {
+		"format": "{:%H:%M}",
+		"tooltip-format": "<i>todo: week numbers are off by -1!</i>\n{calendar}",
+		"locale": "en_US.UTF-8",
+		"calendar": {
+			"mode": "month",
+			"mode-mon-col": 6,
+			"weeks-pos": "left",
+			"on-scroll": 1,
+			"format": {
+				"months": "<span color='#89b4fa'><b>{}</b></span>",
+				"days": "<span color='#cdd6f4'>{}</span>",
+				"weeks": "<span color='#fab387'><b>v{}</b></span>",
+				"weekdays": "<span color='#a6adc8'><i>{}</i></span>",
+				"today": "<span color='#f38ba8'><b>{}</b></span>"
+			}
+		},
+		"actions": {
+			"on-click": "mode"
+		}
+	},
+
+	"pulseaudio": {
+		"format": "{icon} {volume}%",
+		"format-muted": "󰝟 muted",
+		"format-icons": {
+			"default": ["󰕿", "󰖀", "󰕾"],
+			"headphone": "󰋋",
+			"headset": "󰋎"
+		},
+		"tooltip-format": "Output: {desc}",
+		"on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+		"on-click-right": "pavucontrol"
+	},
+
+	"network": {
+		"interval": 10,
+		"format-wifi": "{icon} {essid}",
+		"format-ethernet": "󰈀",
+		"format-disconnected": "󰤯",
+		"format-disabled": "󰤮",
+		"format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
+		"tooltip-format-wifi": "<b>Network</b>: {essid}\n<b>IP</b>: {ipaddr}/{cidr}\n<b>Strength</b>: {signalStrength}%",
+		"tooltip-format-disconnected": "Wi-Fi Disconnected",
+		"on-click": "kitty --class floating -e ~/.config/waybar/scripts/network.sh"
+	},
+
+	"bluetooth": {
+		"format-off": "󰂲 off",
+		"format-on": "󰂯 on",
+		"format-connected": "󰂱 on ({num_connections})",
+		"tooltip-format-on": "Bluetooth On (no devices connected)",
+		"tooltip-format-connected": "{num_connections} device(s) connected:\n{device_enumerate}",
+		"tooltip-format-enumerate-connected": "  • {device_alias}",
+		"on-click": "kitty --class floating -e ~/.config/waybar/scripts/bluetooth.sh",
+		"on-click-right": "kitty --class floating -e ~/.config/waybar/scripts/bluetooth.sh disconnect"
+	},
+
+	"mpris": {
+		"format": "{player_icon} {dynamic}",
+		"format-paused": "{status_icon} {dynamic}",
+		"tooltip-format": "{player}: {artist} - {title}",
+		"tooltip-format-paused": "{player} (paused): {artist} - {title}",
+		"dynamic-order": ["artist", "title"],
+		"dynamic-separator": " - ",
+		"dynamic-len": 40,
+		"player-icons": {
+			"default": "󰎈",
+			"chromium": "󰊯",
+			"chrome": "󰊯",
+			"firefox": "󰈹",
+			"spotify": "󰓇",
+			"vlc": "󰕼",
+			"mpv": "󰐌"
+		},
+		"status-icons": {
+			"paused": "󰏤"
+		}
+	},
+
+	"battery": {
+		"states": {
+			"warning": 20,
+			"critical": 10
+		},
+		"format": "{icon} {capacity}%",
+		"format-charging": "󰉁 {capacity}%",
+		"format-icons": ["󰂎", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+		"tooltip-format": "Discharging: {time}",
+		"tooltip-format-charging": "Charging: {time}"
+	},
+
+	"tray": {
+		"icon-size": 16,
+		"spacing": 8
+	}
 }

@@ -77,7 +77,7 @@ update-packages() {
 
 display-module() {
 	if [[ $is_online == false ]]; then
-		echo "{ \"text\": \"󰒑\", \"tooltip\": \"Cannot fetch updates. Right-click to retry.\" }"
+		echo "{ \"text\": \"󰣇\", \"tooltip\": \"Cannot fetch updates\", \"class\": \"offline\" }"
 		return 0
 	fi
 
@@ -88,9 +88,9 @@ display-module() {
 
 	local total=$((repo + aur))
 	if ((total == 0)); then
-		echo "{ \"text\": \"󰸟\", \"tooltip\": \"No updates available\" }"
+		echo "{ \"text\": \"󰣇\", \"tooltip\": \"No updates available\", \"class\": \"updated\" }"
 	else
-		echo "{ \"text\": \"󰄠\", \"tooltip\": \"$tooltip\" }"
+		echo "{ \"text\": \"󰣇\", \"tooltip\": \"$total updates available\n$tooltip\", \"class\": \"updates-available\" }"
 	fi
 }
 

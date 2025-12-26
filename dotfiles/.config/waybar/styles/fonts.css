@@ -5,9 +5,13 @@
 }
 
 #custom-user,
-#window label,
 #mpris,
 tooltip label {
+	font-weight: normal;
+}
+
+#window label {
+	font-family: "JetBrainsMono Nerd Font";
 	font-weight: normal;
 }
 

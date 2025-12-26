@@ -119,6 +119,8 @@ pair-and-connect() {
 			notify-send 'Bluetooth' 'Failed to pair' -i 'package-purge'
 			return 1
 		fi
+		printf '\nTrusting...'
+		bluetoothctl trust "$address" > /dev/null
 	fi
 
 	printf '\nConnecting...'
@@ -126,10 +128,58 @@ pair-and-connect() {
 		notify-send 'Bluetooth' 'Failed to connect' -i 'package-purge'
 		return 1
 	fi
+
+	# Restart audio pipeline to ensure bluetooth audio works
+	printf '\nInitializing audio...'
+	sleep 1
+	systemctl --user restart pipewire pipewire-pulse wireplumber
+	sleep 2
+
 	notify-send 'Bluetooth' 'Successfully connected' -i 'package-install'
 }
 
-main() {
+get-connected-devices() {
+	list=$(bluetoothctl devices Connected | sed 's/^Device //')
+	if [[ -z $list ]]; then
+		notify-send 'Bluetooth' 'No connected devices' -i 'network-bluetooth'
+		return 1
+	fi
+}
+
+select-connected-device() {
+	local header
+	header=$(printf '%-17s %s' 'Address' 'Name')
+	local opts=(
+		'--border=sharp'
+		'--border-label= Connected Devices '
+		'--ghost=Search'
+		"--header=$header"
+		'--height=~100%'
+		'--highlight-line'
+		'--info=inline-right'
+		'--pointer='
+		'--reverse'
+	)
+
+	address=$(fzf "${opts[@]}" <<< "$list" | awk '{print $1}')
+	if [[ -z $address ]]; then
+		return 1
+	fi
+}
+
+disconnect-device() {
+	local name
+	name=$(bluetoothctl info "$address" | awk -F': ' '/Name/ {print $2}')
+
+	printf 'Disconnecting %s...\n' "$name"
+	if ! timeout $TIMEOUT bluetoothctl disconnect "$address" > /dev/null; then
+		notify-send 'Bluetooth' "Failed to disconnect $name" -i 'package-purge'
+		return 1
+	fi
+	notify-send 'Bluetooth' "Disconnected $name" -i 'network-bluetooth'
+}
+
+connect-mode() {
 	tput civis
 	ensure-on || exit 1
 	get-device-list || exit 1
@@ -138,4 +188,17 @@ main() {
 	pair-and-connect || exit 1
 }
 
-main
+disconnect-mode() {
+	get-connected-devices || exit 1
+	select-connected-device || exit 1
+	disconnect-device || exit 1
+}
+
+main() {
+	case $1 in
+		'disconnect') disconnect-mode ;;
+		*) connect-mode ;;
+	esac
+}
+
+main "$@"
