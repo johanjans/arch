@@ -6,10 +6,9 @@ syntax enable                           " Enables syntax highlighing
 filetype plugin on                      " Syntax highlighting and comments from file type
 filetype indent on                      " indentation from filetype
 "set nowrap                              " Display long lines as just one line
-set nocompatible                        " Remove old crap that makes vim be compatible with vi
 set encoding=utf-8                      " The encoding displayed
 set pumheight=10                        " Makes popup menu smaller
-set fileencoding=utf-8                  " The encoding written to file
+setglobal fileencoding=utf-8            " The encoding written to file
 set ruler   		                        " Show the cursor position all the time
 set iskeyword+=-                      	" Treat dash separated words as a word text object"
 set mouse=a                             " Enable your mouse

@@ -34,8 +34,8 @@ vnoremap <tab> %
 vnoremap < <gv
 vnoremap > >gv
 
-" gitgutter
-nnoremap <leader>g :GitGutterPreviewHunk<CR>
+" gitsigns
+nnoremap <leader>g :Gitsigns preview_hunk<CR>
 
 " nerdcommenter
 nmap <leader>c <plug>NERDCommenterToggle
