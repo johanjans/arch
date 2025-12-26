@@ -64,9 +64,9 @@ pacstrap /mnt pipewire pipewire-pulse wireplumber alsa-utils sof-firmware # audi
 pacstrap /mnt nvidia-open-dkms nvidia-utils egl-wayland                   # gpu
 pacstrap /mnt wayland xorg-xwayland wayland-protocols libva-nvidia-driver # wayland
 pacstrap /mnt neovim git base-devel man-db openssh curl btop              # utils
-pacstrap /mnt hyprland uwsm swww kitty hypridle mako                      # hyprland core
+pacstrap /mnt hyprland uwsm swww kitty hypridle mako libnotify            # hyprland core
 pacstrap /mnt brightnessctl hyprpolkitagent hyprlock hyprpicker waybar    # hyprland utils
-pacstrap /mnt wofi dolphin code pavucontrol                                          # gui apps
+pacstrap /mnt wofi dolphin code pavucontrol                               # gui apps
 pacstrap /mnt nerd-fonts noto-fonts fastfetch                             # fonts/rice
 pacstrap /mnt xdg-desktop-portal-hyprland                                 # portals
 pacstrap /mnt qt5-wayland qt6-wayland xwaylandvideobridge                 # qt theming
@@ -74,6 +74,7 @@ pacstrap /mnt nwg-look                                                    # gtk 
 pacstrap /mnt nwg-displays                                                # display manager
 pacstrap /mnt nodejs yarn fzf ripgrep bat pacman-contrib                  # dev tools
 pacstrap /mnt npm                                                         # for gemini cli installation
+pacstrap /mnt mattermost-desktop gimp texstudio texlive inkscape
 
 # Configuration
 genfstab -pU /mnt >> /mnt/etc/fstab
