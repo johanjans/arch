@@ -78,7 +78,7 @@ alias v='nvim'							                                                           
 alias n='nvim'                                                                            # short for neovim
 
 # NEW TERMINAL
-fastfetch --logo-width 24 --logo-height 12 --logo-padding-top 2 --logo-padding-left 3 --kitty-direct /home/johan/.face # show some system information
+fastfetch --kitty-direct $HOME/.config/fastfetch/archpuccinn.png
 echo "aliases: ex" # alias reminder
 echo "keybinds: ..."
 echo ""
