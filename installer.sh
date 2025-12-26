@@ -65,8 +65,8 @@ pacstrap /mnt nvidia-open-dkms nvidia-utils egl-wayland                   # gpu
 pacstrap /mnt wayland xorg-xwayland wayland-protocols libva-nvidia-driver # wayland
 pacstrap /mnt neovim git base-devel man-db openssh curl                   # utils
 pacstrap /mnt hyprland uwsm swww kitty hypridle                           # hyprland core
-pacstrap /mnt brightnessctl hyprpolkitagent hyprlock hyprpicker           # hyprland utils
-pacstrap /mnt wofi dolphin code                                           # gui apps
+pacstrap /mnt brightnessctl hyprpolkitagent hyprlock hyprpicker waybar    # hyprland utils
+pacstrap /mnt wofi dolphin code pavucontrol                                          # gui apps
 pacstrap /mnt nerd-fonts noto-fonts fastfetch                             # fonts/rice
 pacstrap /mnt xdg-desktop-portal-hyprland                                 # portals
 pacstrap /mnt qt5-wayland qt6-wayland xwaylandvideobridge                 # qt theming
