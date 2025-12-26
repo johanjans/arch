@@ -14,15 +14,15 @@ export EDITOR="nvim"
 export TERM="xterm-256color"
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'    # GCC warnings and errors colorized
 export MANPAGER="nvim +Man!"                                                              # neovim as manpager
-shopt -s histappend			                                                  # append to the history file, don't overwrite it
-shopt -s checkwinsize	                                                                  # update $LINES and $COLUMNS depending on window size after each command
+shopt -s histappend			                                                                  # append to the history file, don't overwrite it
+shopt -s checkwinsize	                                                                    # update $LINES and $COLUMNS depending on window size after each command
 shopt -s cdspell                                                                          # autocorrect cd spelling errors
 shopt -s cmdhist                                                                          # save multi-line commands in history as single-line
 shopt -s expand_aliases                                                                   # expand aliases
 HISTCONTROL=ignoreboth	                                                                  # don't put duplicate lines or lines starting with space in history.
 HISTSIZE=HISTFILESIZE=                                                                    # infinite history and history file size
 PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}/\007"'                       # terminal window title
-PS1='\w/ > '							                          # prompt: dir>
+PS1='\w/ > '							                                                                # prompt: dir>
 force_color_prompt=yes	                                                                  # use a colored prompt
 
 # FUNCTIONS
@@ -78,7 +78,7 @@ alias v='nvim'							                                                           
 alias n='nvim'                                                                            # short for neovim
 
 # NEW TERMINAL
-fastfetch --logo-padding-top 2 --logo-padding-left 3 --kitty-direct /home/johan/.config/hypr/fastfetch.png # show some system information
+fastfetch --logo-width 24 --logo-height 12 --logo-padding-top 2 --logo-padding-left 3 --kitty-direct /home/johan/.face # show some system information
 echo "aliases: ex" # alias reminder
 echo "keybinds: ..."
 echo ""
