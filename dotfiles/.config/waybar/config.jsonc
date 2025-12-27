@@ -46,6 +46,7 @@
 		"interval": 3600,
 		"signal": 1,
 		"on-click": "kitty --class floating -e ~/.config/waybar/scripts/system-update.sh",
+		"on-click-middle": "xdg-open https://archlinux.org/news/",
 		"on-click-right": "kitty --class floating -e ~/.config/waybar/scripts/power-menu.sh"
 	},
 
